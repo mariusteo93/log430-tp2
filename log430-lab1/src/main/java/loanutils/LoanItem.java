@@ -3,6 +3,8 @@
  */
 package loanutils;
 
+import com.google.common.eventbus.EventBus;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,12 +87,22 @@ public final class LoanItem implements Cloneable, Serializable {
      */
     private Float insurance = 0F;
 
+    // Event Bus
+    private EventBus changeEventBus = null;
+    private EventBus diffEventBus = null;
+
 //Methods
     /**
      * Default constructor
      */
     public LoanItem() {
+        // Old code
         changeListeners = new ArrayList<ChangeListener>();
+
+        // New code
+        // Init the event buses
+        changeEventBus = new EventBus();
+        diffEventBus = new EventBus();
     }
 
     /**
