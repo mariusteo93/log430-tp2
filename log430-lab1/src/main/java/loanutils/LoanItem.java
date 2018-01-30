@@ -123,6 +123,10 @@ public final class LoanItem implements Cloneable, Serializable {
         lClone.setSalary(getSalary());
         lClone.setLoanType(getLoanType());
         return lClone;
+
+
+
+        //DQWEQWE
     }
 
 //Listeners
