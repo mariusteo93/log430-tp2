@@ -8,6 +8,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.google.common.eventbus.EventBus;
 import loanutils.CalcLoanItem;
 import loanutils.ChangeListener;
 import loanutils.DiffListener;
@@ -62,9 +64,15 @@ public class TabbedPanel extends JPanel implements ChangeListener, DiffListener 
     private JLabel ytaLabel = new JLabel("0");
 
     /**
+     * The EventBus
+     */
+    private EventBus evtBus = null;
+
+    /**
      * Constructor
      */
-    public TabbedPanel() {
+    public TabbedPanel(EventBus evtBus) {
+        this.evtBus = evtBus;
         setLayout(new GridLayout(1, 3, 5, 5));
         add(buildMonthlyPanel());
         add(buildCostPanel());

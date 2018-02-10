@@ -9,6 +9,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.google.common.eventbus.EventBus;
 import loanutils.CalcLoanItem;
 import loanutils.ChangeListener;
 import controllers.LoanControler;
@@ -52,10 +54,16 @@ public class OptionPanel extends JPanel implements ChangeListener {
     private Float curValue = null;
 
     /**
+     * The EventBus
+     */
+    private EventBus evtBus = null;
+
+    /**
      * Constructor
      */
-    public OptionPanel(final LoanControler pControler) {
+    public OptionPanel(final LoanControler pControler, EventBus evtBus) {
         controler = pControler;
+        this.evtBus = evtBus;
         layoutComponents();
         //Add text field focus listener
         FocusListener lFocusListener = new FocusListener() {

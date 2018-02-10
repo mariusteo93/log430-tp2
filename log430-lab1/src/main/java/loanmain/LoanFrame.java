@@ -31,6 +31,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.google.common.eventbus.EventBus;
 import loangui.EntryPanel;
 import loangui.OptionPanel;
 import loangui.TabbedPanel;
@@ -108,11 +109,16 @@ public class LoanFrame extends JFrame {
     private LoanControler controler = new LoanControler();
 
     /**
+     * The EventBus
+     */
+    private EventBus evtBus = new EventBus();
+
+    /**
      * Constructor
      */
     public LoanFrame() {
-        entryPanel = new EntryPanel(controler);
-        optionPanel = new OptionPanel(controler);
+        entryPanel = new EntryPanel(controler, evtBus);
+        optionPanel = new OptionPanel(controler, evtBus);
         init();
     }
 
