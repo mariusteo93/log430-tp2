@@ -17,19 +17,6 @@ public class TabbedPanelDiffUpdate {
     JLabel effLabel=null;
     JLabel pctLabel=null;
     JLabel ytaLabel=null;
-    public void setParam( JLabel MenLabel, JLabel AssLabel, JLabel TotLabel, JLabel MenCostLabel, JLabel AssCostLabel, JLabel TotCostLabel, JLabel EffLabel, JLabel PctLabel,
-                          JLabel YtaLabel){
-
-        menLabel=MenLabel;
-        assLabel=AssLabel;
-        totLabel=TotLabel;
-        assCostLabel=AssCostLabel;
-        totCostLabel=TotCostLabel;
-        effLabel=EffLabel;
-        pctLabel=PctLabel;
-        ytaLabel=YtaLabel;
-
-    }
 
     public TabbedPanelDiffUpdate(LoanItem pItem1, LoanItem pItem2){
         Double lMensHorsAss1 = CalcLoanItem.computeMensHorsAss(pItem1);
@@ -80,5 +67,19 @@ public class TabbedPanelDiffUpdate {
         Double lPerYear2 = lMens2 * 12D;
         Double lDiffPerYear = lPerYear1 - lPerYear2;
         ytaLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lDiffPerYear.floatValue()));
+    }
+
+    public void setParam( JLabel MenLabel, JLabel AssLabel, JLabel TotLabel, JLabel MenCostLabel, JLabel AssCostLabel, JLabel TotCostLabel, JLabel EffLabel, JLabel PctLabel,
+                          JLabel YtaLabel){
+
+        menLabel=MenLabel;
+        assLabel=AssLabel;
+        totLabel=TotLabel;
+        assCostLabel=AssCostLabel;
+        totCostLabel=TotCostLabel;
+        effLabel=EffLabel;
+        pctLabel=PctLabel;
+        ytaLabel=YtaLabel;
+
     }
 }

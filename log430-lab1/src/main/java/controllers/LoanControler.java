@@ -118,7 +118,8 @@ public class LoanControler {
                 break;
         }
         if (lNewValue != null) {
-            item.fireItemChanged();
+//            item.fireItemChanged();
+            item.updateChanges();
         }
     }
 

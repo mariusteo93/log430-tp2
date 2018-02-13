@@ -4,6 +4,9 @@
 package loanutils;
 
 import com.google.common.eventbus.EventBus;
+import controllers.EntryPanelUpdate;
+import controllers.OptionPanelUpdate;
+import controllers.TabbedPanelUpdate;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -201,13 +204,12 @@ public final class LoanItem implements Cloneable, Serializable {
     /**
      * Aware the responders that this item is diffed
      *
-     * @param pItem1 the first loan item
-     * @param pItem2 the second loan item
+     * @param pItem the first loan item
      */
     public void updateChanges() {
-//        evtBus.post(new EntryPanelUpdate(this));
-//        evtBus.post(new OptionPanelUpdate(this));
-//        evtBus.post(new TabbedPanelUpdate(this));
+        evtBus.post(new EntryPanelUpdate(this));
+        evtBus.post(new OptionPanelUpdate(this));
+        evtBus.post(new TabbedPanelUpdate(this));
     }
 
 //getters and setters

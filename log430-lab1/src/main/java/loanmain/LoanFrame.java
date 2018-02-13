@@ -151,7 +151,7 @@ public class LoanFrame extends JFrame {
                     cloneBtn.getAction().setEnabled(!lIsDiffed);
                     simulBtn.getAction().setEnabled(!lIsDiffed);
                     controler.setDiffed(lIsDiffed);
-                    optionPanel.itemChanged();
+//                    optionPanel.itemChanged();
                     optionPanel.itemChanged(lItem);
                     if (lIsDiffed) {
                         ((TabbedPanel) tabPane.getSelectedComponent()).itemDiffed(model.getFirst(lItem), model.getSecond(lItem));
@@ -360,8 +360,8 @@ public class LoanFrame extends JFrame {
      */
     private void addItem(final LoanItem pItem) {
         int lNb = tabPane.getTabCount();
-        pItem.addChangeListener(entryPanel);
-        pItem.addChangeListener(optionPanel);
+//        pItem.addChangeListener(entryPanel);
+//        pItem.addChangeListener(optionPanel);
         TabbedPanel lTabbedPanel = new TabbedPanel();
         pItem.addChangeListener(lTabbedPanel);
         if (pItem.getName() == null) {
@@ -380,8 +380,8 @@ public class LoanFrame extends JFrame {
      * @param pItem2 the second item
      */
     private void addItem(final LoanItem pItem, final LoanItem pItem1, final LoanItem pItem2) {
-        pItem.addChangeListener(entryPanel);
-        pItem.addChangeListener(optionPanel);
+//        pItem.addChangeListener(entryPanel);
+//        pItem.addChangeListener(optionPanel);
         TabbedPanel lTabbedPanel = new TabbedPanel();
         pItem.addDiffListener(lTabbedPanel);
         model.add(pItem, pItem1, pItem2);

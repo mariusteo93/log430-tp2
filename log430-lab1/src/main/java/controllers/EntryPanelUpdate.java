@@ -19,25 +19,10 @@ public class EntryPanelUpdate  {
     JCheckBox timCB=null;
     LoanControler controler=null;
 
-    public void setParam(FloatJTextField AmoTF, FloatJTextField TauTF, FloatJTextField MonTF, FloatJTextField TimTF, JCheckBox AmoCB
-            , JCheckBox TauCB, JCheckBox MonCB, JCheckBox TimCB, LoanControler Controler ){
-        amoTF=AmoTF;
-        tauTF=TauTF;
-        monTF=MonTF;
-        timTF=TimTF;
-
-         amoCB=AmoCB;
-         tauCB=TauCB;
-         monCB=MonCB;
-         timCB=TimCB;
-         controler=Controler;
-    }
-
     /**
      * Constructs a prototypical Event.
      *
-     * @param source The object on which the Event initially occurred.
-     * @throws IllegalArgumentException if source is null.
+     * @param pItem The object on which the Event initially occurred.
      */
     public EntryPanelUpdate(LoanItem pItem) {
         monTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getMensualite()));
@@ -58,5 +43,17 @@ public class EntryPanelUpdate  {
         monCB.setEnabled(!controler.isDiffed());
     }
 
+    public void setParam(FloatJTextField AmoTF, FloatJTextField TauTF, FloatJTextField MonTF, FloatJTextField TimTF, JCheckBox AmoCB
+            , JCheckBox TauCB, JCheckBox MonCB, JCheckBox TimCB, LoanControler Controler ){
+        amoTF=AmoTF;
+        tauTF=TauTF;
+        monTF=MonTF;
+        timTF=TimTF;
 
+        amoCB=AmoCB;
+        tauCB=TauCB;
+        monCB=MonCB;
+        timCB=TimCB;
+        controler=Controler;
+    }
 }

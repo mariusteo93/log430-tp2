@@ -12,16 +12,7 @@ public class OptionPanelUpdate  {
     FloatJTextField salTF=null;
     LoanControler controler=null;
 
-    public void setParam(FloatJTextField AfeTF, FloatJTextField AssTF, FloatJTextField NotTF, FloatJTextField SalTF, LoanControler Controler){
-        afeTF=AfeTF;
-        assTF=AssTF;
-        notTF=NotTF;
-        salTF=SalTF;
-        controler=Controler;
-    }
-
     public OptionPanelUpdate( LoanItem pItem){
-
         afeTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getFrais()));
         assTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getInsurance()));
         Double lNotFee = CalcLoanItem.computeNotaryFee(pItem);
@@ -31,5 +22,13 @@ public class OptionPanelUpdate  {
         assTF.setEditable(!controler.isDiffed());
         notTF.setEditable(!controler.isDiffed());
         salTF.setEditable(!controler.isDiffed());
+    }
+
+    public void setParam(FloatJTextField AfeTF, FloatJTextField AssTF, FloatJTextField NotTF, FloatJTextField SalTF, LoanControler Controler){
+        afeTF=AfeTF;
+        assTF=AssTF;
+        notTF=NotTF;
+        salTF=SalTF;
+        controler=Controler;
     }
 }
