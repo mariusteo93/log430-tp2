@@ -151,7 +151,7 @@ public class LoanFrame extends JFrame {
                     cloneBtn.getAction().setEnabled(!lIsDiffed);
                     simulBtn.getAction().setEnabled(!lIsDiffed);
                     controler.setDiffed(lIsDiffed);
-                    entryPanel.itemChanged(lItem);
+                    optionPanel.itemChanged();
                     optionPanel.itemChanged(lItem);
                     if (lIsDiffed) {
                         ((TabbedPanel) tabPane.getSelectedComponent()).itemDiffed(model.getFirst(lItem), model.getSecond(lItem));

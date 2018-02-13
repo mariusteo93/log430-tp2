@@ -10,12 +10,16 @@ import javax.swing.JOptionPane;
 import loanutils.FormatterFactory;
 import loanutils.MyBundle;
 
+import com.google.common.eventbus.EventBus;
+
 /**
  * The main class
  *
  * @author jean-blas Imbert
  */
 public class JbiLoan extends WindowAdapter {
+
+    private EventBus eventBus = new EventBus();
 
     /**
      * The main function
