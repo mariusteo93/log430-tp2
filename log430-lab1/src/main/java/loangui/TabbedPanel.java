@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import loanutils.CalcLoanItem;
 import loanutils.ChangeListener;
 import loanutils.DiffListener;
@@ -64,15 +65,9 @@ public class TabbedPanel extends JPanel implements ChangeListener, DiffListener 
     private JLabel ytaLabel = new JLabel("0");
 
     /**
-     * The EventBus
-     */
-    private EventBus evtBus = null;
-
-    /**
      * Constructor
      */
-    public TabbedPanel(EventBus evtBus) {
-        this.evtBus = evtBus;
+    public TabbedPanel() {
         setLayout(new GridLayout(1, 3, 5, 5));
         add(buildMonthlyPanel());
         add(buildCostPanel());
@@ -86,31 +81,14 @@ public class TabbedPanel extends JPanel implements ChangeListener, DiffListener 
      */
     @Override
     public void itemChanged(final LoanItem pItem) {
-        Double lMensHorsAss = CalcLoanItem.computeMensHorsAss(pItem);
-        if (lMensHorsAss == null) {
-            lMensHorsAss = 0D;
-        }
-        menLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lMensHorsAss.floatValue()));
-        Double lMensAss = CalcLoanItem.computeMensAss(pItem);
-        if (lMensAss == null) {
-            lMensAss = 0D;
-        }
-        assLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lMensAss.floatValue()));
-        Double lMens = lMensHorsAss + lMensAss;
-        totLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lMens.floatValue()));
-        Double lCoutHorsAss = lMensHorsAss * pItem.getDuree() * 12D - pItem.getAmount();
-        menCostLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lCoutHorsAss.floatValue()));
-        Double lCoutAss = lMensAss * pItem.getDuree() * 12D;
-        assCostLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lCoutAss.floatValue()));
-        Double lCout = lCoutHorsAss + lCoutAss + (pItem.getFrais() == null? 0D : pItem.getFrais());
-        totCostLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lCout.floatValue()));
-        Double lTauxEff = CalcLoanItem.calcTauxEff(pItem);
-        effLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lTauxEff == null ? 0F : lTauxEff.floatValue()));
-        Double lPctSalary = pItem.getSalary().equals(0F) ? 0F : lMens / pItem.getSalary() * 100D;
-        pctLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lPctSalary.floatValue()));
-        Double lPerYear = lMens * 12D;
-        ytaLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lPerYear.floatValue()));
+
     }
+
+    // Subscribe to TabbedPanelUpdate event
+//    @Subscribe
+//    public void update(TabbedPanelUpdate event) {
+//
+//    }
 
     /**
      * Compute the real difference between two loan items
@@ -120,54 +98,7 @@ public class TabbedPanel extends JPanel implements ChangeListener, DiffListener 
      */
     @Override
     public void itemDiffed(final LoanItem pItem1, final LoanItem pItem2) {
-        Double lMensHorsAss1 = CalcLoanItem.computeMensHorsAss(pItem1);
-        if (lMensHorsAss1 == null) {
-            lMensHorsAss1 = 0D;
-        }
-        Double lMensHorsAss2 = CalcLoanItem.computeMensHorsAss(pItem2);
-        if (lMensHorsAss2 == null) {
-            lMensHorsAss2 = 0D;
-        }
-        Double lDiffMensHorsAss = lMensHorsAss1 - lMensHorsAss2;
-        menLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lDiffMensHorsAss.floatValue()));
-        Double lMensAss1 = CalcLoanItem.computeMensAss(pItem1);
-        if (lMensAss1 == null) {
-            lMensAss1 = 0D;
-        }
-        Double lMensAss2 = CalcLoanItem.computeMensAss(pItem2);
-        if (lMensAss2 == null) {
-            lMensAss2 = 0D;
-        }
-        Double lDiffMensAss = lMensAss1 - lMensAss2;
-        assLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lDiffMensAss.floatValue()));
-        Double lMens1 = lMensHorsAss1 + lMensAss1;
-        Double lMens2 = lMensHorsAss2 + lMensAss2;
-        Double lDiffMens = lMens1 - lMens2;
-        totLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lDiffMens.floatValue()));
-        Double lCoutHorsAss1 = lMensHorsAss1 * pItem1.getDuree() * 12D - pItem1.getAmount();
-        Double lCoutHorsAss2 = lMensHorsAss2 * pItem2.getDuree() * 12D - pItem2.getAmount();
-        Double lDiffCoutHorsAss = lCoutHorsAss1 - lCoutHorsAss2;
-        menCostLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lDiffCoutHorsAss.floatValue()));
-        Double lCoutAss1 = lMensAss1 * pItem1.getDuree() * 12D;
-        Double lCoutAss2 = lMensAss2 * pItem2.getDuree() * 12D;
-        Double lDiffCoutAss = lCoutAss1 - lCoutAss2;
-        assCostLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lDiffCoutAss.floatValue()));
-        Double lCout1 = lCoutHorsAss1 + lCoutAss1;
-        Double lCout2 = lCoutHorsAss2 + lCoutAss2;
-        Double lDiffCout = lCout1 - lCout2 + pItem1.getFrais() - pItem2.getFrais();
-        totCostLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lDiffCout.floatValue()));
-        Double lTauxEff1 = CalcLoanItem.calcTauxEff(pItem1);
-        Double lTauxEff2 = CalcLoanItem.calcTauxEff(pItem2);
-        Double lDiffTauxEff = (lTauxEff1 == null ? 0D : lTauxEff1) - (lTauxEff2 == null ? 0D : lTauxEff2);
-        effLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lDiffTauxEff.floatValue()));
-        Double lPctSalary1 = pItem1.getSalary().equals(0F) ? 0F : lMens1 / pItem1.getSalary() * 100D;
-        Double lPctSalary2 = pItem2.getSalary().equals(0F) ? 0F : lMens2 / pItem2.getSalary() * 100D;
-        Double lDiffPctSalary = lPctSalary1 - lPctSalary2;
-        pctLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lDiffPctSalary.floatValue()));
-        Double lPerYear1 = lMens1 * 12D;
-        Double lPerYear2 = lMens2 * 12D;
-        Double lDiffPerYear = lPerYear1 - lPerYear2;
-        ytaLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lDiffPerYear.floatValue()));
+
     }
 
     /**

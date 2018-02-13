@@ -14,6 +14,7 @@
  */
 package loanutils;
 
+import com.google.common.eventbus.EventBus;
 import loansolver.OneParamFuncItf;
 import loansolver.Solver;
 import loansolver.SolverItf;
@@ -30,6 +31,7 @@ public final class CalcLoanItem {
      */
     private CalcLoanItem() {
     }
+
 
     /**
      * Compute the approximative notary fee

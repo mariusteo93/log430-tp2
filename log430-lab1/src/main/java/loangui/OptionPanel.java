@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import loanutils.CalcLoanItem;
 import loanutils.ChangeListener;
 import controllers.LoanControler;
@@ -53,17 +54,12 @@ public class OptionPanel extends JPanel implements ChangeListener {
      */
     private Float curValue = null;
 
-    /**
-     * The EventBus
-     */
-    private EventBus evtBus = null;
 
     /**
      * Constructor
      */
-    public OptionPanel(final LoanControler pControler, EventBus evtBus) {
+    public OptionPanel(final LoanControler pControler) {
         controler = pControler;
-        this.evtBus = evtBus;
         layoutComponents();
         //Add text field focus listener
         FocusListener lFocusListener = new FocusListener() {
@@ -95,16 +91,14 @@ public class OptionPanel extends JPanel implements ChangeListener {
      */
     @Override
     public void itemChanged(final LoanItem pItem) {
-        afeTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getFrais()));
-        assTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getInsurance()));
-        Double lNotFee = CalcLoanItem.computeNotaryFee(pItem);
-        notTF.setText(FormatterFactory.fmtCurrencyNoSymbol(lNotFee.floatValue()));
-        salTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getSalary()));
-        afeTF.setEditable(!controler.isDiffed());
-        assTF.setEditable(!controler.isDiffed());
-        notTF.setEditable(!controler.isDiffed());
-        salTF.setEditable(!controler.isDiffed());
+
     }
+
+//    // Subscribe to OptionPanelUpdate event
+//    @Subscribe
+//    public void update(OptionPanelUpdate event) {
+//
+//    }
 
     /**
      * Lay out the components

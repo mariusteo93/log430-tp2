@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import loanutils.ChangeListener;
 import controllers.LoanControler;
 import loanutils.LoanItem;
@@ -73,16 +74,10 @@ public class EntryPanel extends JPanel implements ChangeListener {
     private Float curValue = null;
 
     /**
-     * The EventBus
-     */
-    private EventBus evtBus = null;
-
-    /**
      * Constructor
      */
-    public EntryPanel(final LoanControler pControler, EventBus evtBus) {
+    public EntryPanel(final LoanControler pControler) {
         controler = pControler;
-        this.evtBus = evtBus;
         layoutComponents();
         synchronizeCBandTF();
         //Add the check box action listener
@@ -183,21 +178,12 @@ public class EntryPanel extends JPanel implements ChangeListener {
      */
     @Override
     public void itemChanged(final LoanItem pItem) {
-        monTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getMensualite()));
-        tauTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getTaux()));
-        timTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getDuree()));
-        amoTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getAmount()));
-        amoCB.setSelected(pItem.getLoanType() != LoanItem.LoanType.MONTANT);
-        tauCB.setSelected(pItem.getLoanType() != LoanItem.LoanType.TAUX);
-        timCB.setSelected(pItem.getLoanType() != LoanItem.LoanType.DUREE);
-        monCB.setSelected(pItem.getLoanType() != LoanItem.LoanType.MENSUALITE);
-        monTF.setEditable(!controler.isDiffed());
-        tauTF.setEditable(!controler.isDiffed());
-        timTF.setEditable(!controler.isDiffed());
-        amoTF.setEditable(!controler.isDiffed());
-        amoCB.setEnabled(!controler.isDiffed());
-        tauCB.setEnabled(!controler.isDiffed());
-        timCB.setEnabled(!controler.isDiffed());
-        monCB.setEnabled(!controler.isDiffed());
+
     }
+
+//    // Subscribe to EntryPanelUpdate event
+//    @Subscribe
+//    public void update(EntryPanelUpdate event) {
+//
+//    }
 }

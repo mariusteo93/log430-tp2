@@ -88,8 +88,8 @@ public final class LoanItem implements Cloneable, Serializable {
     private Float insurance = 0F;
 
     // Event Bus
-    private EventBus changeEventBus = null;
-    private EventBus diffEventBus = null;
+    private EventBus evtBus = new EventBus();
+
 
 //Methods
     /**
@@ -98,11 +98,6 @@ public final class LoanItem implements Cloneable, Serializable {
     public LoanItem() {
         // Old code
         changeListeners = new ArrayList<ChangeListener>();
-
-        // New code
-        // Init the event buses
-        changeEventBus = new EventBus();
-        diffEventBus = new EventBus();
     }
 
     /**
@@ -193,10 +188,22 @@ public final class LoanItem implements Cloneable, Serializable {
      * @param pItem1 the first loan item
      * @param pItem2 the second loan item
      */
-    public void fireItemDiffed(final LoanItem pItem1, final LoanItem pItem2) {
-        for (DiffListener lListener : diffListeners) {
-            lListener.itemDiffed(pItem1, pItem2);
-        }
+//    public void fireItemDiffed(final LoanItem pItem1, final LoanItem pItem2) {
+//        for (DiffListener lListener : diffListeners) {
+//            lListener.itemDiffed(pItem1, pItem2);
+//        }
+//    }
+
+    /**
+     * Aware the responders that this item is diffed
+     *
+     * @param pItem1 the first loan item
+     * @param pItem2 the second loan item
+     */
+    public void updateChanges() {
+//        evtBus.post(new EntryPanelUpdate(this));
+//        evtBus.post(new OptionPanelUpdate(this));
+//        evtBus.post(new TabbedPanelUpdate(this));
     }
 
 //getters and setters
