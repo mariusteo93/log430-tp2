@@ -109,6 +109,8 @@ import com.google.common.eventbus.Subscribe;
         tauTF.addFocusListener(lFocusListener);
         monTF.addFocusListener(lFocusListener);
         timTF.addFocusListener(lFocusListener);
+
+        name__ALL_THE_THINGS();
     }
 
     /**
@@ -182,4 +184,42 @@ import com.google.common.eventbus.Subscribe;
   /**  @Override
     public void itemChanged(final LoanItem pItem) {
    */
+
+    /**
+     * ─────────────────────────────▄██▄
+     ─────────────────────────────▀███
+     ───────────────▄▄▄▄▄────────────█
+     ──────────────▀▄────▀▄──────────█
+     ──────────▄▀▀▀▄─█▄▄▄▄█▄▄─▄▀▀▀▄──█
+     ─────────█──▄──█────────█───▄─█─█
+     ─────────▀▄───▄▀────────▀▄───▄▀─█
+     ──────────█▀▀▀────────────▀▀▀─█─█
+     ▄▀▄▄▀▄────█──▄█▀█▀█▀█▀█▀█▄────█─█
+     █▒▒▒▒█────█──█████████████▄───█─█
+     █▒▒▒▒█────█──██████████████▄──█─█
+     █▒▒▒▒█────█───██████████████▄─█─█
+     █▒▒▒▒█────█────██████████████─█─█
+     █▒▒▒▒█────█───██████████████▀─█─█
+     █▒▒▒▒█───██───██████████████──█─█
+     ▀████▀──██▀█──█████████████▀──█▄█
+     ──██───██──▀█──█▄█▄█▄█▄█▄█▀──▄█▀
+     ──██──██────▀█─────────────▄▀▓█
+     ──██─██──────▀█▀▄▄▄▄▄▄▄▄▄▀▀▓▓▓█
+     ──████────────█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+     ──███─────────█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+     ──██──────────█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+     */
+  private void name__ALL_THE_THINGS() {
+
+      // Name __ALL__ the FloatJTextFields
+      amoTF.setName("amoTF");
+      tauTF.setName("tauTF");
+      monTF.setName("monTF");
+      timTF.setName("timTF");
+
+      // Name __ALL__ the JCheckboxes
+      amoCB.setName("amoCB");
+      tauCB.setName("tauCB");
+      timCB.setName("timCB");
+  }
 }

@@ -7,6 +7,7 @@ import com.google.common.eventbus.EventBus;
 import controllers.EntryPanelUpdate;
 import controllers.OptionPanelUpdate;
 import controllers.TabbedPanelUpdate;
+import loangui.OptionPanel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -207,9 +208,13 @@ public final class LoanItem implements Cloneable, Serializable {
      * @param pItem the first loan item
      */
     public void updateChanges() {
-        evtBus.post(new EntryPanelUpdate(this));
-        evtBus.post(new OptionPanelUpdate(this));
-        evtBus.post(new TabbedPanelUpdate(this));
+        EntryPanelUpdate epu = new EntryPanelUpdate(this);
+        OptionPanelUpdate opu = new OptionPanelUpdate(this);
+        TabbedPanelUpdate tpu = new TabbedPanelUpdate(this);
+
+        evtBus.post(epu);
+        evtBus.post(opu);
+        evtBus.post(tpu);
     }
 
 //getters and setters
