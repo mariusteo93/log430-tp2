@@ -5,7 +5,9 @@ import loanutils.FloatJTextField;
 import loanutils.FormatterFactory;
 import loanutils.LoanItem;
 
-public class OptionPanelUpdate  {
+import javax.swing.*;
+
+public class OptionPanelUpdate implements InterfacePanelUpdater {
     FloatJTextField afeTF=null;
     FloatJTextField assTF=null;
     FloatJTextField notTF=null;
@@ -30,5 +32,9 @@ public class OptionPanelUpdate  {
         notTF=NotTF;
         salTF=SalTF;
         controler=Controler;
+    }
+
+    public void setParams(JPanel panel) {
+
     }
 }

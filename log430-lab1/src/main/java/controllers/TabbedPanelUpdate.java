@@ -7,7 +7,7 @@ import loanutils.LoanItem;
 
 import javax.swing.*;
 
-public class TabbedPanelUpdate {
+public class TabbedPanelUpdate implements InterfacePanelUpdater {
 
     JLabel menLabel=null;
     JLabel assLabel=null;
@@ -58,5 +58,9 @@ public class TabbedPanelUpdate {
         pctLabel=PctLabel;
         ytaLabel=YtaLabel;
 
+    }
+
+    public void setParams(JPanel panel) {
+        
     }
 }

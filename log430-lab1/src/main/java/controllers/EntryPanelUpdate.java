@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 
-public class EntryPanelUpdate  {
+public class EntryPanelUpdate  implements InterfacePanelUpdater {
     private List<FloatJTextField> floatJTextFields = new ArrayList<FloatJTextField>();
     private List<JCheckBox> jCheckBoxes = new ArrayList<JCheckBox>();
     private LoanControler controler=null;
@@ -28,7 +28,7 @@ public class EntryPanelUpdate  {
         setJCB();
     }
 
-    public void setParam(JPanel panel){
+    public void setParams(JPanel panel){
         Component[] components = panel.getComponents();
 
         for (Component c : components) {
