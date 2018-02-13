@@ -3,20 +3,14 @@
  */
 package loangui;
 
-import java.awt.GridLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
-import loanutils.CalcLoanItem;
 import loanutils.ChangeListener;
 import loanutils.DiffListener;
-import loanutils.LoanItem;
-import loanutils.FormatterFactory;
 import loanutils.FrameUtils;
+import loanutils.LoanItem;
+
+import javax.swing.*;
+import java.awt.*;
+
 import static loanutils.MyBundle.translate;
 
 /**

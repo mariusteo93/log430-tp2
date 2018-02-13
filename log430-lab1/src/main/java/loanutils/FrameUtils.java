@@ -3,29 +3,12 @@
  */
 package loanutils;
 
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.Window;
-import java.awt.geom.Dimension2D;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.io.Writer;
-import java.net.MalformedURLException;
-import javax.swing.Box;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
+import java.awt.geom.Dimension2D;
+import java.io.*;
+import java.net.MalformedURLException;
 
 import static loanutils.MyBundle.translate;
 

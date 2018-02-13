@@ -3,25 +3,15 @@
  */
 package loanmain;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Window;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.ListCellRenderer;
-
-import loanutils.LoanItem;
-import models.LoanModel;
 import loanutils.FrameUtils;
 import loanutils.JbiBtnFactory;
+import loanutils.LoanItem;
+import models.LoanModel;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+
 import static loanutils.MyBundle.translate;
 
 /**

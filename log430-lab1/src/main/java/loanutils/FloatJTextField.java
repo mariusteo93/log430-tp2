@@ -3,12 +3,12 @@
  */
 package loanutils;
 
-import java.awt.Toolkit;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
+import java.awt.*;
 
 /**
  * JTextField that acceps only float numbers. According to the FormatterFactory, the format depends on the locale

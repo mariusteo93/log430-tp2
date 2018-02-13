@@ -3,29 +3,18 @@
  */
 package loangui;
 
+import controllers.LoanControler;
+import loanutils.FloatJTextField;
+import loanutils.FrameUtils;
+import loanutils.LoanItem;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
-import loanutils.ChangeListener;
-import controllers.LoanControler;
-import loanutils.LoanItem;
-import loanutils.FloatJTextField;
-import loanutils.FormatterFactory;
-import loanutils.FrameUtils;
 import static loanutils.MyBundle.translate;
-
-import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
 
 /**
  * The panels for entries components

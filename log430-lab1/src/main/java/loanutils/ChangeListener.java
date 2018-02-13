@@ -3,8 +3,6 @@
  */
 package loanutils;
 
-import loanutils.LoanItem;
-
 /**
  * Components that are interested in LoanItem changes should implement this interface.
  *

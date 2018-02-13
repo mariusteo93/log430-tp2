@@ -3,44 +3,24 @@
  */
 package loanmain;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.IOException;
-import javax.swing.AbstractAction;
-import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JSeparator;
-import javax.swing.JTabbedPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import com.google.common.eventbus.EventBus;
+import controllers.LoanControler;
 import loangui.EntryPanel;
 import loangui.OptionPanel;
 import loangui.TabbedPanel;
 import loanutils.CalcLoanItem;
-import controllers.LoanControler;
-import loanutils.LoanItem;
-import models.LoanModel;
 import loanutils.FrameUtils;
 import loanutils.JbiBtnFactory;
+import loanutils.LoanItem;
+import models.LoanModel;
+
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.IOException;
+
 import static loanutils.MyBundle.translate;
 
 /**

@@ -1,6 +1,5 @@
 package controllers;
 
-import loangui.TabbedPanel;
 import loanutils.CalcLoanItem;
 import loanutils.FormatterFactory;
 import loanutils.LoanItem;
@@ -61,6 +60,6 @@ public class TabbedPanelUpdate implements InterfacePanelUpdater {
     }
 
     public void setParams(JPanel panel) {
-        
+
     }
 }

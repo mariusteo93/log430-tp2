@@ -14,7 +14,6 @@
  */
 package loanutils;
 
-import com.google.common.eventbus.EventBus;
 import loansolver.OneParamFuncItf;
 import loansolver.Solver;
 import loansolver.SolverItf;

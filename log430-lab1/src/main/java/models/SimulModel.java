@@ -7,6 +7,7 @@ import loanutils.CalcLoanItem;
 import loanutils.LoanItem;
 
 import javax.swing.table.AbstractTableModel;
+
 import static loanutils.MyBundle.translate;
 
 /**

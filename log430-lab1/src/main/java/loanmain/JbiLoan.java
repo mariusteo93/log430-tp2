@@ -3,14 +3,14 @@
  */
 package loanmain;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.Locale;
-import javax.swing.JOptionPane;
+import com.google.common.eventbus.EventBus;
 import loanutils.FormatterFactory;
 import loanutils.MyBundle;
 
-import com.google.common.eventbus.EventBus;
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Locale;
 
 /**
  * The main class

@@ -4,9 +4,8 @@
 
 package loanutils;
 
+import javax.swing.*;
 import java.awt.event.InputEvent;
-import javax.swing.AbstractAction;
-import javax.swing.KeyStroke;
 
 /**
  * A simple action that bears an accelerator key, a tooltip and an icon

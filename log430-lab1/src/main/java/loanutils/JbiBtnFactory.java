@@ -4,10 +4,8 @@
  */
 package loanutils;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.*;
+
 import static loanutils.MyBundle.translate;
 
 /**

@@ -3,22 +3,16 @@
  */
 package loangui;
 
+import controllers.LoanControler;
+import loanutils.ChangeListener;
+import loanutils.FloatJTextField;
+import loanutils.FrameUtils;
+import loanutils.LoanItem;
+
+import javax.swing.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
-import loanutils.CalcLoanItem;
-import loanutils.ChangeListener;
-import controllers.LoanControler;
-import loanutils.LoanItem;
-import loanutils.FloatJTextField;
-import loanutils.FormatterFactory;
-import loanutils.FrameUtils;
 import static loanutils.MyBundle.translate;
 
 /**

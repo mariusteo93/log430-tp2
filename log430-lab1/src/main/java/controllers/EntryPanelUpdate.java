@@ -7,7 +7,6 @@ import loanutils.LoanItem;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.EventObject;
 import java.util.List;
 
 public class EntryPanelUpdate  implements InterfacePanelUpdater {

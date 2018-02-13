@@ -3,8 +3,6 @@
  */
 package loanutils;
 
-import loanutils.LoanItem;
-
 /**
  * Components that are interested in LoanItem differenciations should implement this interface.
  *

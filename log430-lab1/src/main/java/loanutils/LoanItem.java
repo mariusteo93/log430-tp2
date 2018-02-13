@@ -7,7 +7,6 @@ import com.google.common.eventbus.EventBus;
 import controllers.EntryPanelUpdate;
 import controllers.OptionPanelUpdate;
 import controllers.TabbedPanelUpdate;
-import loangui.OptionPanel;
 
 import java.io.Serializable;
 import java.util.ArrayList;

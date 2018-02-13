@@ -3,14 +3,15 @@
  */
 package models;
 
+import loanutils.FrameUtils;
+import loanutils.LoanItem;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import loanutils.LoanItem;
-import loanutils.FrameUtils;
 import static loanutils.MyBundle.translate;
 
 /**
