@@ -4,9 +4,7 @@
 package loanutils;
 
 import com.google.common.eventbus.EventBus;
-import controllers.AbstractPanelUpdater;
 import controllers.EntryPanelUpdate;
-import controllers.AbstractPanelUpdater;
 import controllers.OptionPanelUpdate;
 import controllers.TabbedPanelUpdate;
 import loanmain.LoanFrame;
@@ -208,19 +206,19 @@ public final class LoanItem implements Cloneable, Serializable {
      * Aware the responders that this item is updated
      */
     public void updateChanges() {
-        List<AbstractPanelUpdater> updaters = new ArrayList<AbstractPanelUpdater>();
-
-        AbstractPanelUpdater epu = new EntryPanelUpdate(this, LoanFrame.getEntryPanel());
-        AbstractPanelUpdater opu = new OptionPanelUpdate(this, LoanFrame.getOptionPanel());
-        AbstractPanelUpdater tpu = new TabbedPanelUpdate(this);
-
-        updaters.add(epu);
-        updaters.add(opu);
-        updaters.add(tpu);
-
-        evtBus.post(epu);
-        evtBus.post(opu);
-        evtBus.post(tpu);
+//        List<AbstractPanelUpdater> updaters = new ArrayList<AbstractPanelUpdater>();
+//
+//        AbstractPanelUpdater epu = new EntryPanelUpdate(this, LoanFrame.getEntryPanel());
+//        AbstractPanelUpdater opu = new OptionPanelUpdate(this, LoanFrame.getOptionPanel());
+//        AbstractPanelUpdater tpu = new TabbedPanelUpdate(this);
+//
+//        updaters.add(epu);
+//        updaters.add(opu);
+//        updaters.add(tpu);
+//
+//        evtBus.post(epu);
+//        evtBus.post(opu);
+//        evtBus.post(tpu);
     }
 
 //getters and setters

@@ -97,7 +97,7 @@ public class LoanFrame extends JFrame {
      * Constructor
      */
     public LoanFrame() {
-        entryPanel = new EntryPanel(controler);
+        entryPanel = new EntryPanel(controler, evtBus);
         optionPanel = new OptionPanel(controler);
 
         evtBus.register(entryPanel);

@@ -7,22 +7,19 @@ import loanutils.LoanItem;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.List;
 
-public class EntryPanelUpdate extends AbstractPanelUpdater {
+public class EntryPanelUpdate extends EventObject {
     private List<FloatJTextField> floatJTextFields = new ArrayList<FloatJTextField>();
     private List<JCheckBox> jCheckBoxes = new ArrayList<JCheckBox>();
     private LoanControler controler=null;
     private Object pItem;
 
-    /**
-     * Constructs a prototypical Event.
-     *
-     * @param pItem The object on which the Event initially occurred.
-     */
-    public EntryPanelUpdate(Object pItem, Object panel) {
-        this.pItem = pItem;
+    public EntryPanelUpdate(Object source, Object panel) {
+        super(source);
 
+        this.pItem = super.getSource();
         setParams(panel);
     }
 

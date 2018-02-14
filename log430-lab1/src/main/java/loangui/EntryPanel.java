@@ -3,6 +3,9 @@
  */
 package loangui;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import controllers.EntryPanelUpdate;
 import controllers.LoanControler;
 import loanutils.FloatJTextField;
 import loanutils.FrameUtils;
@@ -65,11 +68,15 @@ import static loanutils.MyBundle.translate;
      */
     private Float curValue = null;
 
+    private EventBus evtBus = null;
+
     /**
      * Constructor
      */
-    public EntryPanel(final LoanControler pControler) {
+    public EntryPanel(final LoanControler pControler, EventBus pEvtBus) {
         controler = pControler;
+        evtBus = pEvtBus;
+
         layoutComponents();
         synchronizeCBandTF();
         //Add the check box action listener
@@ -100,6 +107,11 @@ import static loanutils.MyBundle.translate;
         timTF.addFocusListener(lFocusListener);
 
         name__ALL_THE_THINGS();
+    }
+
+    @Subscribe
+    public void updateChanges() {
+        evtBus.post(new EntryPanelUpdate(controler, this));
     }
 
     /**
