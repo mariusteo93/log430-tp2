@@ -3,6 +3,9 @@
  */
 package loangui;
 
+import com.google.common.eventbus.Subscribe;
+import controllers.EntryPanelUpdate;
+import controllers.InterfacePanelUpdater;
 import controllers.LoanControler;
 import loanutils.FloatJTextField;
 import loanutils.FrameUtils;
@@ -71,9 +74,9 @@ import static loanutils.MyBundle.translate;
     public EntryPanel(final LoanControler pControler) {
         controler = pControler;
         layoutComponents();
-        synchronizeCBandTF();
+        /*synchronizeCBandTF();*/
         //Add the check box action listener
-        ActionListener lAL = buildCBActionListener();
+        /*ActionListener lAL = buildCBActionListener();*/
         amoCB.addActionListener(lAL);
         tauCB.addActionListener(lAL);
         monCB.addActionListener(lAL);
@@ -102,12 +105,18 @@ import static loanutils.MyBundle.translate;
         name__ALL_THE_THINGS();
     }
 
+    @Subscribe
+    public void update(InterfacePanelUpdater entryPanelUpdater) {
+        System.out.println("Hello from EntryPanel!");
+        entryPanelUpdater.setParams(this);
+    }
+
     /**
      * The check box action listener (same for all checkbox)
      *
      * @return the filled action listener
      */
-    private ActionListener buildCBActionListener() {
+/*    private ActionListener buildCBActionListener() {
         ActionListener lAL = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent pEvent) {
@@ -120,13 +129,13 @@ import static loanutils.MyBundle.translate;
             }
         };
         return lAL;
-    }
+    }*/
 
     /**
      * Synchronize the checkbox and the text fields. A text field is enable if and only if its corresponding checkbox is
      * selected.
      */
-    public final void synchronizeCBandTF() {
+/*    public final void synchronizeCBandTF() {
         amoTF.setEnabled(amoCB.isSelected());
         tauTF.setEnabled(tauCB.isSelected());
         monTF.setEnabled(monCB.isSelected());
@@ -140,7 +149,7 @@ import static loanutils.MyBundle.translate;
             lType = LoanItem.LoanType.DUREE;
         }
         controler.setLoanType(lType);
-    }
+    }*/
 
     /**
      * Lay out the components

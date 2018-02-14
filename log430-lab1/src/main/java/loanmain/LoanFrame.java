@@ -91,7 +91,7 @@ public class LoanFrame extends JFrame {
     /**
      * The EventBus
      */
-    private EventBus evtBus = new EventBus();
+    private static EventBus evtBus = new EventBus();
 
     /**
      * Constructor
@@ -99,6 +99,9 @@ public class LoanFrame extends JFrame {
     public LoanFrame() {
         entryPanel = new EntryPanel(controler);
         optionPanel = new OptionPanel(controler);
+
+        evtBus.register(entryPanel);
+        evtBus.register(optionPanel);
         init();
     }
 
@@ -165,7 +168,7 @@ public class LoanFrame extends JFrame {
         setJMenuBar(lMenuBar);
         //Fill the tabbed pane with the first component
         newBtn.doClick();
-        entryPanel.synchronizeCBandTF();
+        /*entryPanel.synchronizeCBandTF();*/
         //Add the components
         getContentPane().add(buildCenterPanel(), BorderLayout.CENTER);
         getContentPane().add(buildButtonPanel(), BorderLayout.SOUTH);
@@ -253,7 +256,7 @@ public class LoanFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent pEvent) {
-                addItem(new LoanItem());
+                addItem(new LoanItem(evtBus));
             }
         });
         compareBtn = JbiBtnFactory.COMPARE.create(new AbstractAction() {
@@ -343,7 +346,8 @@ public class LoanFrame extends JFrame {
 //        pItem.addChangeListener(entryPanel);
 //        pItem.addChangeListener(optionPanel);
         TabbedPanel lTabbedPanel = new TabbedPanel();
-        pItem.addChangeListener(lTabbedPanel);
+        evtBus.register(lTabbedPanel);
+        /*pItem.addChangeListener(lTabbedPanel);*/
         if (pItem.getName() == null) {
             pItem.setName(String.valueOf(lNb + 1));
         }
@@ -363,7 +367,8 @@ public class LoanFrame extends JFrame {
 //        pItem.addChangeListener(entryPanel);
 //        pItem.addChangeListener(optionPanel);
         TabbedPanel lTabbedPanel = new TabbedPanel();
-        pItem.addDiffListener(lTabbedPanel);
+        evtBus.register(lTabbedPanel);
+        /*pItem.addDiffListener(lTabbedPanel);*/
         model.add(pItem, pItem1, pItem2);
         Icon lIcon = FrameUtils.createImageIcon("emprunt.png", "");
         tabPane.addTab(pItem.getName(), lIcon, lTabbedPanel, translate("tabTooltip"));

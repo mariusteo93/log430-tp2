@@ -22,9 +22,6 @@ public class EntryPanelUpdate  implements InterfacePanelUpdater {
      */
     public EntryPanelUpdate(LoanItem pItem) {
         this.pItem = pItem;
-
-        setFJtf();
-        setJCB();
     }
 
     public void setParams(JPanel panel){
@@ -38,6 +35,9 @@ public class EntryPanelUpdate  implements InterfacePanelUpdater {
                 jCheckBoxes.add((JCheckBox) c);
             }
         }
+
+        setFJtf();
+        setJCB();
     }
 
     private void setFJtf() {

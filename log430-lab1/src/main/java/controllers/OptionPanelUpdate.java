@@ -6,15 +6,19 @@ import loanutils.FormatterFactory;
 import loanutils.LoanItem;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OptionPanelUpdate implements InterfacePanelUpdater {
+    private List<FloatJTextField> floatJTextFields = new ArrayList<FloatJTextField>();
+
     FloatJTextField afeTF=null;
     FloatJTextField assTF=null;
     FloatJTextField notTF=null;
     FloatJTextField salTF=null;
     LoanControler controler=null;
 
-    public OptionPanelUpdate( LoanItem pItem){
+    public OptionPanelUpdate(LoanItem pItem){
         afeTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getFrais()));
         assTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getInsurance()));
         Double lNotFee = CalcLoanItem.computeNotaryFee(pItem);

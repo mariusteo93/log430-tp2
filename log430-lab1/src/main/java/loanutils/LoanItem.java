@@ -91,16 +91,17 @@ public final class LoanItem implements Cloneable, Serializable {
     private Float insurance = 0F;
 
     // Event Bus
-    private EventBus evtBus = new EventBus();
+    private EventBus evtBus = null;
 
 
 //Methods
     /**
      * Default constructor
      */
-    public LoanItem() {
-        // Old code
-        changeListeners = new ArrayList<ChangeListener>();
+    public LoanItem(EventBus evtBus) {
+        /*changeListeners = new ArrayList<ChangeListener>();*/
+
+        this.evtBus = evtBus;
     }
 
     /**
@@ -121,10 +122,6 @@ public final class LoanItem implements Cloneable, Serializable {
         lClone.setSalary(getSalary());
         lClone.setLoanType(getLoanType());
         return lClone;
-
-
-
-        //DQWEQWE
     }
 
 //Listeners
@@ -133,7 +130,7 @@ public final class LoanItem implements Cloneable, Serializable {
      *
      * @param pListener the new listener
      */
-    public void addChangeListener(final ChangeListener pListener) {
+/*    public void addChangeListener(final ChangeListener pListener) {
         if (changeListeners == null) {
             //This happens after a deserialization
             changeListeners = new ArrayList<ChangeListener>();
@@ -141,34 +138,34 @@ public final class LoanItem implements Cloneable, Serializable {
         if (!changeListeners.contains(pListener)) {
             changeListeners.add(pListener);
         }
-    }
+    }*/
 
     /**
      * Remove a listener
      *
      * @param pListener the listener to remove from the list
      */
-    public void removeChangeListener(final ChangeListener pListener) {
+/*    public void removeChangeListener(final ChangeListener pListener) {
         if (changeListeners.contains(pListener)) {
             changeListeners.remove(pListener);
         }
-    }
+    }*/
 
     /**
      * Aware the listeners that this item has changed
      */
-    public void fireItemChanged() {
+/*    public void fireItemChanged() {
         for (ChangeListener lListener : changeListeners) {
             lListener.itemChanged(this);
         }
-    }
+    }*/
 
     /**
      * Add a new listener
      *
      * @param pListener the new listener
      */
-    public void addDiffListener(final DiffListener pListener) {
+/*    public void addDiffListener(final DiffListener pListener) {
         if (diffListeners == null) {
             //This happens after a deserialization
             diffListeners = new ArrayList<DiffListener>();
@@ -176,18 +173,18 @@ public final class LoanItem implements Cloneable, Serializable {
         if (!diffListeners.contains(pListener)) {
             diffListeners.add(pListener);
         }
-    }
+    }*/
 
     /**
      * Remove a listener
      *
      * @param pListener the listener to remove from the list
      */
-    public void removeDiffListener(final DiffListener pListener) {
+/*    public void removeDiffListener(final DiffListener pListener) {
         if (diffListeners.contains(pListener)) {
             diffListeners.remove(pListener);
         }
-    }
+    }*/
 
     /**
      * Aware the listeners that this item is diffed
@@ -195,26 +192,11 @@ public final class LoanItem implements Cloneable, Serializable {
      * @param pItem1 the first loan item
      * @param pItem2 the second loan item
      */
-//    public void fireItemDiffed(final LoanItem pItem1, final LoanItem pItem2) {
-//        for (DiffListener lListener : diffListeners) {
-//            lListener.itemDiffed(pItem1, pItem2);
-//        }
-//    }
-
-    /**
-     * Aware the responders that this item is diffed
-     *
-     * @param pItem the first loan item
-     */
-    public void updateChanges() {
-        EntryPanelUpdate epu = new EntryPanelUpdate(this);
-        OptionPanelUpdate opu = new OptionPanelUpdate(this);
-        TabbedPanelUpdate tpu = new TabbedPanelUpdate(this);
-
-        evtBus.post(epu);
-        evtBus.post(opu);
-        evtBus.post(tpu);
-    }
+/*    public void fireItemDiffed(final LoanItem pItem1, final LoanItem pItem2) {
+        for (DiffListener lListener : diffListeners) {
+            lListener.itemDiffed(pItem1, pItem2);
+        }
+    }*/
 
 //getters and setters
     public Float getAmount() {
