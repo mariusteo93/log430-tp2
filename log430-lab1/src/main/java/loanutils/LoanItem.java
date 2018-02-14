@@ -4,9 +4,12 @@
 package loanutils;
 
 import com.google.common.eventbus.EventBus;
+import controllers.AbstractPanelUpdater;
 import controllers.EntryPanelUpdate;
+import controllers.AbstractPanelUpdater;
 import controllers.OptionPanelUpdate;
 import controllers.TabbedPanelUpdate;
+import loanmain.LoanFrame;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -133,35 +136,35 @@ public final class LoanItem implements Cloneable, Serializable {
      *
      * @param pListener the new listener
      */
-    public void addChangeListener(final ChangeListener pListener) {
-        if (changeListeners == null) {
-            //This happens after a deserialization
-            changeListeners = new ArrayList<ChangeListener>();
-        }
-        if (!changeListeners.contains(pListener)) {
-            changeListeners.add(pListener);
-        }
-    }
+//    public void addChangeListener(final ChangeListener pListener) {
+//        if (changeListeners == null) {
+//            //This happens after a deserialization
+//            changeListeners = new ArrayList<ChangeListener>();
+//        }
+//        if (!changeListeners.contains(pListener)) {
+//            changeListeners.add(pListener);
+//        }
+//    }
 
     /**
      * Remove a listener
      *
      * @param pListener the listener to remove from the list
      */
-    public void removeChangeListener(final ChangeListener pListener) {
-        if (changeListeners.contains(pListener)) {
-            changeListeners.remove(pListener);
-        }
-    }
+//    public void removeChangeListener(final ChangeListener pListener) {
+//        if (changeListeners.contains(pListener)) {
+//            changeListeners.remove(pListener);
+//        }
+//    }
 
     /**
      * Aware the listeners that this item has changed
      */
-    public void fireItemChanged() {
-        for (ChangeListener lListener : changeListeners) {
-            lListener.itemChanged(this);
-        }
-    }
+//    public void fireItemChanged() {
+//        for (ChangeListener lListener : changeListeners) {
+//            lListener.itemChanged(this);
+//        }
+//    }
 
     /**
      * Add a new listener
@@ -202,14 +205,18 @@ public final class LoanItem implements Cloneable, Serializable {
 //    }
 
     /**
-     * Aware the responders that this item is diffed
-     *
-     * @param pItem the first loan item
+     * Aware the responders that this item is updated
      */
     public void updateChanges() {
-        EntryPanelUpdate epu = new EntryPanelUpdate(this);
-        OptionPanelUpdate opu = new OptionPanelUpdate(this);
-        TabbedPanelUpdate tpu = new TabbedPanelUpdate(this);
+        List<AbstractPanelUpdater> updaters = new ArrayList<AbstractPanelUpdater>();
+
+        AbstractPanelUpdater epu = new EntryPanelUpdate(this, LoanFrame.getEntryPanel());
+        AbstractPanelUpdater opu = new OptionPanelUpdate(this, LoanFrame.getOptionPanel());
+        AbstractPanelUpdater tpu = new TabbedPanelUpdate(this);
+
+        updaters.add(epu);
+        updaters.add(opu);
+        updaters.add(tpu);
 
         evtBus.post(epu);
         evtBus.post(opu);

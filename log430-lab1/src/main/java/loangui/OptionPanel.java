@@ -20,7 +20,7 @@ import static loanutils.MyBundle.translate;
  *
  * @author jean-blas imbert
  */
-public class OptionPanel extends JPanel implements ChangeListener {
+public class OptionPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -83,10 +83,10 @@ public class OptionPanel extends JPanel implements ChangeListener {
      *
      * @param pItem the Loan item corresponding to this panel
      */
-    @Override
-    public void itemChanged(final LoanItem pItem) {
-
-    }
+//    @Override
+//    public void itemChanged(final LoanItem pItem) {
+//
+//    }
 
 //    // Subscribe to OptionPanelUpdate event
 //    @Subscribe

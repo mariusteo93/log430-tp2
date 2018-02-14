@@ -6,7 +6,7 @@ import loanutils.LoanItem;
 
 import javax.swing.*;
 
-public class TabbedPanelUpdate implements InterfacePanelUpdater {
+public class TabbedPanelUpdate extends AbstractPanelUpdater {
 
     JLabel menLabel=null;
     JLabel assLabel=null;
@@ -19,6 +19,7 @@ public class TabbedPanelUpdate implements InterfacePanelUpdater {
     JLabel ytaLabel=null;
 
     public TabbedPanelUpdate(LoanItem pItem){
+
         Double lMensHorsAss = CalcLoanItem.computeMensHorsAss(pItem);
         if (lMensHorsAss == null) {
             lMensHorsAss = 0D;
@@ -59,7 +60,7 @@ public class TabbedPanelUpdate implements InterfacePanelUpdater {
 
     }
 
-    public void setParams(JPanel panel) {
-
+    void setParams(Object panel) {
+        System.out.println("YEE");
     }
 }

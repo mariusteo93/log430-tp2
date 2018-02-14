@@ -9,26 +9,25 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntryPanelUpdate  implements InterfacePanelUpdater {
+public class EntryPanelUpdate extends AbstractPanelUpdater {
     private List<FloatJTextField> floatJTextFields = new ArrayList<FloatJTextField>();
     private List<JCheckBox> jCheckBoxes = new ArrayList<JCheckBox>();
     private LoanControler controler=null;
-    private LoanItem pItem;
+    private Object pItem;
 
     /**
      * Constructs a prototypical Event.
      *
      * @param pItem The object on which the Event initially occurred.
      */
-    public EntryPanelUpdate(LoanItem pItem) {
+    public EntryPanelUpdate(Object pItem, Object panel) {
         this.pItem = pItem;
 
-        setFJtf();
-        setJCB();
+        setParams(panel);
     }
 
-    public void setParams(JPanel panel){
-        Component[] components = panel.getComponents();
+     void setParams(Object panel){
+        Component[] components = ((JPanel) panel).getComponents();
 
         for (Component c : components) {
             if (c.getClass().equals(FloatJTextField.class)) {
@@ -38,6 +37,9 @@ public class EntryPanelUpdate  implements InterfacePanelUpdater {
                 jCheckBoxes.add((JCheckBox) c);
             }
         }
+
+         setFJtf();
+         setJCB();
     }
 
     private void setFJtf() {
@@ -46,19 +48,19 @@ public class EntryPanelUpdate  implements InterfacePanelUpdater {
             String name = fjtf.getName();
 
             if (name.equals("monTF")) {
-                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getMensualite()));
+                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol(((LoanItem)pItem).getMensualite()));
                 fjtf.setEditable(!controler.isDiffed());
             }
             else if(name.equals("tauTF")) {
-                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getTaux()));
+                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol(((LoanItem)pItem).getTaux()));
                 fjtf.setEditable(!controler.isDiffed());
             }
             else if(name.equals("timTF")) {
-                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getDuree()));
+                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol(((LoanItem)pItem).getDuree()));
                 fjtf.setEditable(!controler.isDiffed());
             }
             else if(name.equals("amoTF")) {
-                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getAmount()));
+                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol(((LoanItem)pItem).getAmount()));
             }
         }
     }
@@ -69,19 +71,19 @@ public class EntryPanelUpdate  implements InterfacePanelUpdater {
             String name = jcb.getName();
 
             if (name.equals("monCB")) {
-                jcb.setSelected(pItem.getLoanType() != LoanItem.LoanType.MENSUALITE);
+                jcb.setSelected(((LoanItem)pItem).getLoanType() != LoanItem.LoanType.MENSUALITE);
                 jcb.setEnabled(!controler.isDiffed());
             }
             else if(name.equals("tauCB")) {
-                jcb.setSelected(pItem.getLoanType() != LoanItem.LoanType.TAUX);
+                jcb.setSelected(((LoanItem)pItem).getLoanType() != LoanItem.LoanType.TAUX);
                 jcb.setEnabled(!controler.isDiffed());
             }
             else if(name.equals("timTB")) {
-                jcb.setSelected(pItem.getLoanType() != LoanItem.LoanType.DUREE);
+                jcb.setSelected(((LoanItem)pItem).getLoanType() != LoanItem.LoanType.DUREE);
                 jcb.setEnabled(!controler.isDiffed());
             }
             else if(name.equals("amoCB")) {
-                jcb.setSelected(pItem.getLoanType() != LoanItem.LoanType.MONTANT);
+                jcb.setSelected(((LoanItem)pItem).getLoanType() != LoanItem.LoanType.MONTANT);
                 jcb.setEnabled(!controler.isDiffed());
             }
 

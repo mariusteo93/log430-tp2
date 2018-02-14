@@ -18,7 +18,7 @@ import static loanutils.MyBundle.translate;
  *
  * @author jean-blas imbert
  */
-public class TabbedPanel extends JPanel implements ChangeListener, DiffListener {
+public class TabbedPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -73,10 +73,10 @@ public class TabbedPanel extends JPanel implements ChangeListener, DiffListener 
      *
      * @param pItem the Loan item corresponding to this panel
      */
-    @Override
-    public void itemChanged(final LoanItem pItem) {
-
-    }
+//    @Override
+//    public void itemChanged(final LoanItem pItem) {
+//
+//    }
 
     // Subscribe to TabbedPanelUpdate event
 //    @Subscribe
@@ -90,10 +90,10 @@ public class TabbedPanel extends JPanel implements ChangeListener, DiffListener 
      * @param pItem1 the first loan item
      * @param pItem2 the second loan item
      */
-    @Override
-    public void itemDiffed(final LoanItem pItem1, final LoanItem pItem2) {
-
-    }
+//    @Override
+//    public void itemDiffed(final LoanItem pItem1, final LoanItem pItem2) {
+//
+//    }
 
     /**
      * Construct the panel that contains the monthly result components

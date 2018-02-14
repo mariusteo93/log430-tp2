@@ -6,7 +6,7 @@ import loanutils.LoanItem;
 
 import javax.swing.*;
 
-public class TabbedPanelDiffUpdate implements InterfacePanelUpdater {
+public class TabbedPanelDiffUpdate extends AbstractPanelUpdater {
 
     JLabel menLabel=null;
     JLabel assLabel=null;
@@ -83,7 +83,7 @@ public class TabbedPanelDiffUpdate implements InterfacePanelUpdater {
 
     }
 
-    public void setParams(JPanel panel) {
+    public void setParams(Object panel) {
 
     }
 }

@@ -6,15 +6,23 @@ import loanutils.FormatterFactory;
 import loanutils.LoanItem;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class OptionPanelUpdate implements InterfacePanelUpdater {
+public class OptionPanelUpdate extends AbstractPanelUpdater {
+
+    private List<FloatJTextField> floatJTextFieldList = new ArrayList<FloatJTextField>();
+
     FloatJTextField afeTF=null;
     FloatJTextField assTF=null;
     FloatJTextField notTF=null;
     FloatJTextField salTF=null;
     LoanControler controler=null;
 
-    public OptionPanelUpdate( LoanItem pItem){
+    public OptionPanelUpdate( LoanItem pItem, JPanel panel){
+        setParams(panel);
+
         afeTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getFrais()));
         assTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getInsurance()));
         Double lNotFee = CalcLoanItem.computeNotaryFee(pItem);
@@ -26,15 +34,15 @@ public class OptionPanelUpdate implements InterfacePanelUpdater {
         salTF.setEditable(!controler.isDiffed());
     }
 
-    public void setParam(FloatJTextField AfeTF, FloatJTextField AssTF, FloatJTextField NotTF, FloatJTextField SalTF, LoanControler Controler){
-        afeTF=AfeTF;
-        assTF=AssTF;
-        notTF=NotTF;
-        salTF=SalTF;
-        controler=Controler;
-    }
+    void setParams(Object panel) {
+        Component[] components = ((JPanel) panel).getComponents();
 
-    public void setParams(JPanel panel) {
+        for (Component c : components) {
+            if (c.getClass().equals("FloatJTextField")) {
+                floatJTextFieldList.add((FloatJTextField) c);
+            }
+        }
+
 
     }
 }
