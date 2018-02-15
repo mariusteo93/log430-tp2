@@ -68,14 +68,11 @@ import static loanutils.MyBundle.translate;
      */
     private Float curValue = null;
 
-    private EventBus evtBus = null;
-
     /**
      * Constructor
      */
-    public EntryPanel(final LoanControler pControler, EventBus pEvtBus) {
+    public EntryPanel(final LoanControler pControler) {
         controler = pControler;
-        evtBus = pEvtBus;
 
         layoutComponents();
         synchronizeCBandTF();
@@ -110,8 +107,11 @@ import static loanutils.MyBundle.translate;
     }
 
     @Subscribe
-    public void updateChanges() {
-        evtBus.post(new EntryPanelUpdate(controler, this));
+    public void updateChanges(EntryPanelUpdate event) {
+        // TODO: Impletement
+        event.setPanel(this);
+        event.setControler(controler);
+        event.update();
     }
 
     /**

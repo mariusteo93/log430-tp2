@@ -97,7 +97,7 @@ public class LoanFrame extends JFrame {
      * Constructor
      */
     public LoanFrame() {
-        entryPanel = new EntryPanel(controler, evtBus);
+        entryPanel = new EntryPanel(controler);
         optionPanel = new OptionPanel(controler);
 
         evtBus.register(entryPanel);
@@ -177,6 +177,8 @@ public class LoanFrame extends JFrame {
         setSize(650, 450);
         setResizable(false);
         FrameUtils.screenCenter(this);
+
+        CalcLoanItem.setEvtBus(evtBus);
     }
 
     /**
@@ -256,7 +258,7 @@ public class LoanFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent pEvent) {
-                addItem(new LoanItem());
+                addItem(new LoanItem(evtBus));
             }
         });
         compareBtn = JbiBtnFactory.COMPARE.create(new AbstractAction() {

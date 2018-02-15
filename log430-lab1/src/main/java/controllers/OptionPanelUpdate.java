@@ -14,26 +14,18 @@ import java.util.List;
 public class OptionPanelUpdate extends EventObject {
 
     private List<FloatJTextField> floatJTextFieldList = new ArrayList<FloatJTextField>();
+    private Object loanItem;
     private Object controler=null;
 
-    public OptionPanelUpdate( Object source, Object panel, Object controler){
+
+    public OptionPanelUpdate(Object source){
         super(source);
 
-        setParams(panel);
-
-//        afeTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getFrais()));
-//        assTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getInsurance()));
-//        Double lNotFee = CalcLoanItem.computeNotaryFee(pItem);
-//        notTF.setText(FormatterFactory.fmtCurrencyNoSymbol(lNotFee.floatValue()));
-//        salTF.setText(FormatterFactory.fmtCurrencyNoSymbol(pItem.getSalary()));
-//        afeTF.setEditable(!controler.isDiffed());
-//        assTF.setEditable(!controler.isDiffed());
-//        notTF.setEditable(!controler.isDiffed());
-//        salTF.setEditable(!controler.isDiffed());
+        loanItem = super.getSource();
     }
 
-    private void setParams(Object panel) {
-        Component[] components = ((JPanel) panel).getComponents();
+    public void setPanel(JPanel panel) {
+        Component[] components = panel.getComponents();
 
         for (Component c : components) {
             if (c.getClass().equals("FloatJTextField")) {
@@ -42,23 +34,27 @@ public class OptionPanelUpdate extends EventObject {
         }
     }
 
-    public void compute(Object pItem) {
+    public void setControler(LoanControler pControler) {
+        controler = pControler;
+    }
+
+    public void update() {
         for (FloatJTextField fjtf : floatJTextFieldList) {
             if (fjtf.getName() == "afeTF") {
-                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol( ((LoanItem) pItem).getFrais() ));
+                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol( ((LoanItem) loanItem).getFrais() ));
                 fjtf.setEditable( !((LoanControler)controler).isDiffed() );
             }
             else if (fjtf.getName() == "assTF") {
-                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol( ((LoanItem) pItem).getInsurance() ));
+                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol( ((LoanItem) loanItem).getInsurance() ));
                 fjtf.setEditable( !((LoanControler)controler).isDiffed() );
             }
             else if (fjtf.getName() == "notTF") {
-                Double lNotFee = CalcLoanItem.computeNotaryFee( (LoanItem) pItem);
+                Double lNotFee = CalcLoanItem.computeNotaryFee( (LoanItem) loanItem);
                 fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol( lNotFee.floatValue() ));
                 fjtf.setEditable( !((LoanControler)controler).isDiffed() );
             }
             else if (fjtf.getName() == "salTF") {
-                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol( ((LoanItem) pItem).getSalary() ));
+                fjtf.setText(FormatterFactory.fmtCurrencyNoSymbol( ((LoanItem) loanItem).getSalary() ));
                 fjtf.setEditable(!((LoanControler)controler).isDiffed());
             }
         }

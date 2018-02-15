@@ -9,6 +9,7 @@ import controllers.OptionPanelUpdate;
 import controllers.TabbedPanelUpdate;
 import loanmain.LoanFrame;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,16 +93,18 @@ public final class LoanItem implements Cloneable, Serializable {
     private Float insurance = 0F;
 
     // Event Bus
-    private EventBus evtBus = new EventBus();
+    private EventBus evtBus = null;
 
 
 //Methods
     /**
      * Default constructor
      */
-    public LoanItem() {
+    public LoanItem(EventBus pEvtBus) {
         // Old code
         changeListeners = new ArrayList<ChangeListener>();
+
+        evtBus = pEvtBus;
     }
 
     /**
@@ -111,7 +114,7 @@ public final class LoanItem implements Cloneable, Serializable {
      */
     @Override
     public LoanItem clone() {
-        LoanItem lClone = new LoanItem();
+        LoanItem lClone = new LoanItem(evtBus);
         lClone.setAmount(getAmount());
         lClone.setDuree(getDuree());
         lClone.setFrais(getFrais());
@@ -206,19 +209,8 @@ public final class LoanItem implements Cloneable, Serializable {
      * Aware the responders that this item is updated
      */
     public void updateChanges() {
-//        List<AbstractPanelUpdater> updaters = new ArrayList<AbstractPanelUpdater>();
-//
-//        AbstractPanelUpdater epu = new EntryPanelUpdate(this, LoanFrame.getEntryPanel());
-//        AbstractPanelUpdater opu = new OptionPanelUpdate(this, LoanFrame.getOptionPanel());
-//        AbstractPanelUpdater tpu = new TabbedPanelUpdate(this);
-//
-//        updaters.add(epu);
-//        updaters.add(opu);
-//        updaters.add(tpu);
-//
-//        evtBus.post(epu);
-//        evtBus.post(opu);
-//        evtBus.post(tpu);
+        evtBus.post(new EntryPanelUpdate(this));
+        evtBus.post(new OptionPanelUpdate(this));
     }
 
 //getters and setters

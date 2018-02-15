@@ -3,6 +3,7 @@
  */
 package loangui;
 
+import com.google.common.eventbus.Subscribe;
 import loanutils.ChangeListener;
 import loanutils.DiffListener;
 import loanutils.FrameUtils;
@@ -80,8 +81,8 @@ public class TabbedPanel extends JPanel {
 
     // Subscribe to TabbedPanelUpdate event
 //    @Subscribe
-//    public void update(TabbedPanelUpdate event) {
-//
+//    public void updateChanges() {
+//        // TODO: Implement
 //    }
 
     /**

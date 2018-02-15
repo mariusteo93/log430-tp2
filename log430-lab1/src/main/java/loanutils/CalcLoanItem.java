@@ -14,6 +14,7 @@
  */
 package loanutils;
 
+import com.google.common.eventbus.EventBus;
 import loansolver.OneParamFuncItf;
 import loansolver.Solver;
 import loansolver.SolverItf;
@@ -24,7 +25,7 @@ import loansolver.SolverItf;
  * @author jean-blas imbert
  */
 public final class CalcLoanItem {
-
+    private static EventBus evtBus = null;
     /**
      * Utility class => private constructor
      */
@@ -219,7 +220,7 @@ public final class CalcLoanItem {
      * @return pItem1 - pItem2
      */
     public static LoanItem diff(final LoanItem pItem1, final LoanItem pItem2) {
-        LoanItem lItem = new LoanItem();
+        LoanItem lItem = new LoanItem(evtBus);
         lItem.setName(pItem1.getName() + " - " + pItem2.getName());
         lItem.setAmount(pItem1.getAmount() - pItem2.getAmount());
         lItem.setDuree(pItem1.getDuree() - pItem2.getDuree());
@@ -229,5 +230,9 @@ public final class CalcLoanItem {
         lItem.setSalary(pItem1.getSalary() - pItem2.getSalary());
         lItem.setTaux(pItem1.getTaux() - pItem2.getTaux());
         return lItem;
+    }
+
+    public static void setEvtBus(EventBus pEvtBus) {
+        evtBus = pEvtBus;
     }
 }

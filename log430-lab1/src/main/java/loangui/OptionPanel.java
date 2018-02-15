@@ -79,7 +79,7 @@ public class OptionPanel extends JPanel {
         salTF.addFocusListener(lFocusListener);
     }
 
-    
+
     /**
      * Fill the components with their respective values
      *
@@ -92,8 +92,11 @@ public class OptionPanel extends JPanel {
 
     // Subscribe to OptionPanelUpdate event
     @Subscribe
-    public void update(OptionPanelUpdate event) {
-//        event.compute();
+    public void updateChanges(OptionPanelUpdate event) {
+        // TODO: Implement
+        event.setPanel(this);
+        event.setControler(controler);
+        event.update();
     }
 
     /**

@@ -19,8 +19,6 @@ import java.util.Locale;
  */
 public class JbiLoan extends WindowAdapter {
 
-    private EventBus eventBus = new EventBus();
-
     /**
      * The main function
      *
