@@ -3,7 +3,6 @@
  */
 package loangui;
 
-import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import controllers.EntryPanelUpdate;
 import controllers.LoanControler;
@@ -24,8 +23,7 @@ import static loanutils.MyBundle.translate;
  *
  * @author jean-blas imbert
  */
-// public class EntryPanel extends JPanel implements ChangeListener {
-   public class EntryPanel extends JPanel {
+public class EntryPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     /**
      * Amount text field
@@ -108,7 +106,6 @@ import static loanutils.MyBundle.translate;
 
     @Subscribe
     public void updateChanges(EntryPanelUpdate event) {
-        // TODO: Impletement
         event.setPanel(this);
         event.setControler(controler);
         event.update();
@@ -178,15 +175,6 @@ import static loanutils.MyBundle.translate;
     }
 
     /**
-     * Fill the components with their respective values
-     *
-     * @param pItem the Loan item corresponding to this panel
-     */
-  /**  @Override
-    public void itemChanged(final LoanItem pItem) {
-   */
-
-    /**
      * ─────────────────────────────▄██▄
      ─────────────────────────────▀███
      ───────────────▄▄▄▄▄────────────█
@@ -221,6 +209,7 @@ import static loanutils.MyBundle.translate;
       // Name __ALL__ the JCheckboxes
       amoCB.setName("amoCB");
       tauCB.setName("tauCB");
+      monCB.setName("monCB");
       timCB.setName("timCB");
   }
 }

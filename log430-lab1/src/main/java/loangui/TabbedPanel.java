@@ -4,10 +4,8 @@
 package loangui;
 
 import com.google.common.eventbus.Subscribe;
-import loanutils.ChangeListener;
-import loanutils.DiffListener;
+import controllers.TabbedPanelUpdate;
 import loanutils.FrameUtils;
-import loanutils.LoanItem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,34 +65,17 @@ public class TabbedPanel extends JPanel {
         add(buildMonthlyPanel());
         add(buildCostPanel());
         add(buildDiversPanel());
+
+        name__ALL_THE_THINGS();
     }
 
-    /**
-     * Fill the components with their respective values
-     *
-     * @param pItem the Loan item corresponding to this panel
-     */
-//    @Override
-//    public void itemChanged(final LoanItem pItem) {
-//
-//    }
 
     // Subscribe to TabbedPanelUpdate event
-//    @Subscribe
-//    public void updateChanges() {
-//        // TODO: Implement
-//    }
-
-    /**
-     * Compute the real difference between two loan items
-     *
-     * @param pItem1 the first loan item
-     * @param pItem2 the second loan item
-     */
-//    @Override
-//    public void itemDiffed(final LoanItem pItem1, final LoanItem pItem2) {
-//
-//    }
+    @Subscribe
+    public void updateChanges(TabbedPanelUpdate event) {
+        event.setPanel(this);
+        event.update();
+    }
 
     /**
      * Construct the panel that contains the monthly result components
@@ -166,5 +147,42 @@ public class TabbedPanel extends JPanel {
             {lPctLabel, pctLabel, new JLabel("%")},
             {lYtaLabel, ytaLabel, new JLabel("\u20ac")}});
         return lPanel;
+    }
+    /**
+     * ─────────────────────────────▄██▄
+     ─────────────────────────────▀███
+     ───────────────▄▄▄▄▄────────────█
+     ──────────────▀▄────▀▄──────────█
+     ──────────▄▀▀▀▄─█▄▄▄▄█▄▄─▄▀▀▀▄──█
+     ─────────█──▄──█────────█───▄─█─█
+     ─────────▀▄───▄▀────────▀▄───▄▀─█
+     ──────────█▀▀▀────────────▀▀▀─█─█
+     ▄▀▄▄▀▄────█──▄█▀█▀█▀█▀█▀█▄────█─█
+     █▒▒▒▒█────█──█████████████▄───█─█
+     █▒▒▒▒█────█──██████████████▄──█─█
+     █▒▒▒▒█────█───██████████████▄─█─█
+     █▒▒▒▒█────█────██████████████─█─█
+     █▒▒▒▒█────█───██████████████▀─█─█
+     █▒▒▒▒█───██───██████████████──█─█
+     ▀████▀──██▀█──█████████████▀──█▄█
+     ──██───██──▀█──█▄█▄█▄█▄█▄█▀──▄█▀
+     ──██──██────▀█─────────────▄▀▓█
+     ──██─██──────▀█▀▄▄▄▄▄▄▄▄▄▀▀▓▓▓█
+     ──████────────█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+     ──███─────────█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+     ──██──────────█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+     */
+    private void name__ALL_THE_THINGS() {
+
+        // Name __ALL__ the JLabels
+        menLabel.setName("menLabel");
+        assLabel.setName("assLabel");
+        totLabel.setName("totLabel");
+        menCostLabel.setName("menCostLabel");
+        assCostLabel.setName("assCostLabel");
+        totCostLabel.setName("totCostLabel");
+        effLabel.setName("effLabel");
+        pctLabel.setName("pctLabel");
+        ytaLabel.setName("ytaLabel");
     }
 }

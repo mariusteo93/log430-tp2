@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 
-public class EntryPanelUpdate extends EventObject {
+public class EntryPanelUpdate extends EventObject implements InterfacePanelUpdater {
     private List<FloatJTextField> floatJTextFields = new ArrayList<FloatJTextField>();
     private List<JCheckBox> jCheckBoxes = new ArrayList<JCheckBox>();
     private Object controler = null;

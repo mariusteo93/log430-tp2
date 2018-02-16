@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 
-public class OptionPanelUpdate extends EventObject {
+public class OptionPanelUpdate extends EventObject implements InterfacePanelUpdater {
 
     private List<FloatJTextField> floatJTextFieldList = new ArrayList<FloatJTextField>();
     private Object loanItem;

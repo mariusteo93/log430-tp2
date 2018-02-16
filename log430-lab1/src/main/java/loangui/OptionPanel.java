@@ -6,10 +6,8 @@ package loangui;
 import com.google.common.eventbus.Subscribe;
 import controllers.LoanControler;
 import controllers.OptionPanelUpdate;
-import loanutils.ChangeListener;
 import loanutils.FloatJTextField;
 import loanutils.FrameUtils;
-import loanutils.LoanItem;
 
 import javax.swing.*;
 import java.awt.event.FocusEvent;
@@ -90,10 +88,9 @@ public class OptionPanel extends JPanel {
 //
 //    }
 
-    // Subscribe to OptionPanelUpdate event
+    // Subscribe to the EventBus
     @Subscribe
     public void updateChanges(OptionPanelUpdate event) {
-        // TODO: Implement
         event.setPanel(this);
         event.setControler(controler);
         event.update();

@@ -5,64 +5,94 @@ import loanutils.FormatterFactory;
 import loanutils.LoanItem;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
+import java.util.ListIterator;
 
-public class TabbedPanelUpdate extends EventObject {
+public class TabbedPanelUpdate extends EventObject implements InterfacePanelUpdater {
 
-    JLabel menLabel=null;
-    JLabel assLabel=null;
-    JLabel totLabel=null;
-    JLabel menCostLabel=null;
-    JLabel assCostLabel=null;
-    JLabel totCostLabel=null;
-    JLabel effLabel=null;
-    JLabel pctLabel=null;
-    JLabel ytaLabel=null;
+    private List<JLabel> labelList = new ArrayList<JLabel>();
+    private Object item;
 
     public TabbedPanelUpdate(Object source){
         super(source);
-//
-//        Double lMensHorsAss = CalcLoanItem.computeMensHorsAss(pItem);
-//        if (lMensHorsAss == null) {
-//            lMensHorsAss = 0D;
-//        }
-//        menLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lMensHorsAss.floatValue()));
-//        Double lMensAss = CalcLoanItem.computeMensAss(pItem);
-//        if (lMensAss == null) {
-//            lMensAss = 0D;
-//        }
-//        assLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lMensAss.floatValue()));
-//        Double lMens = lMensHorsAss + lMensAss;
-//        totLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lMens.floatValue()));
-//        Double lCoutHorsAss = lMensHorsAss * pItem.getDuree() * 12D - pItem.getAmount();
-//        menCostLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lCoutHorsAss.floatValue()));
-//        Double lCoutAss = lMensAss * pItem.getDuree() * 12D;
-//        assCostLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lCoutAss.floatValue()));
-//        Double lCout = lCoutHorsAss + lCoutAss + (pItem.getFrais() == null? 0D : pItem.getFrais());
-//        totCostLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lCout.floatValue()));
-//        Double lTauxEff = CalcLoanItem.calcTauxEff(pItem);
-//        effLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lTauxEff == null ? 0F : lTauxEff.floatValue()));
-//        Double lPctSalary = pItem.getSalary().equals(0F) ? 0F : lMens / pItem.getSalary() * 100D;
-//        pctLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lPctSalary.floatValue()));
-//        Double lPerYear = lMens * 12D;
-//        ytaLabel.setText(FormatterFactory.fmtCurrencyNoSymbol(lPerYear.floatValue()));
+
+        item = super.getSource();
     }
 
-//    public void setParam( JLabel MenLabel, JLabel AssLabel, JLabel TotLabel, JLabel MenCostLabel, JLabel AssCostLabel, JLabel TotCostLabel, JLabel EffLabel, JLabel PctLabel,
-//                          JLabel YtaLabel){
-//
-//        menLabel=MenLabel;
-//        assLabel=AssLabel;
-//        totLabel=TotLabel;
-//        assCostLabel=AssCostLabel;
-//        totCostLabel=TotCostLabel;
-//        effLabel=EffLabel;
-//        pctLabel=PctLabel;
-//        ytaLabel=YtaLabel;
-//
-//    }
-//
-//    void setParams(Object panel) {
-//        System.out.println("YEE");
-//    }
+
+    public void setPanel(JPanel panel) {
+        Component[] components = panel.getComponents();
+
+        for (Component c : components) {
+            if (c.getClass().equals(JLabel.class)) {
+                labelList.add((JLabel) c);
+            }
+        }
+    }
+
+    public void update() {
+        setLabels();
+    }
+
+    private void setLabels(){
+        Double lMensHorsAss = CalcLoanItem.computeMensHorsAss((LoanItem) item);
+        if (lMensHorsAss == null) {
+            lMensHorsAss = 0D;
+        }
+        Double lMensAss = CalcLoanItem.computeMensAss((LoanItem) item);
+        if (lMensAss == null) {
+            lMensAss = 0D;
+        }
+        Double lMens = lMensHorsAss + lMensAss;
+        Double lCoutHorsAss = lMensHorsAss * ((LoanItem) item).getDuree()
+                * 12D - ((LoanItem) item).getAmount();
+        Double lCoutAss = lMensAss * ((LoanItem) item).getDuree() * 12D;
+        Double lCout = lCoutHorsAss + lCoutAss + (((LoanItem) item).getFrais() == null?
+                0D : ((LoanItem) item).getFrais());
+        Double lTauxEff = CalcLoanItem.calcTauxEff((LoanItem) item);
+        Double lPctSalary = ((LoanItem) item).getSalary().equals(0F) ? 0F :
+                lMens / ((LoanItem) item).getSalary() * 100D;
+        Double lPerYear = lMens * 12D;
+
+
+
+
+        for (ListIterator<JLabel> it = labelList.listIterator(); it.hasNext();) {
+
+            JLabel label = it.next();
+
+            if(label.getName() == "menLabel") {
+                label.setText(FormatterFactory.fmtCurrencyNoSymbol(lMensHorsAss.floatValue()));
+            }
+            else if (label.getName() == "assLabel") {
+                label.setText(FormatterFactory.fmtCurrencyNoSymbol(lMensAss.floatValue()));
+            }
+            else if (label.getName() == "totLabel") {
+                label.setText(FormatterFactory.fmtCurrencyNoSymbol(lMens.floatValue()));
+            }
+            else if (label.getName() == "menCostLabel") {
+                label.setText(FormatterFactory.fmtCurrencyNoSymbol(lCoutHorsAss.floatValue()));
+            }
+            else if (label.getName() == "assCostLabel") {
+                label.setText(FormatterFactory.fmtCurrencyNoSymbol(lCoutAss.floatValue()));
+            }
+            else if (label.getName() == "totCostLabel") {
+                label.setText(FormatterFactory.fmtCurrencyNoSymbol(lCout.floatValue()));
+            }
+            else if (label.getName() == "effLabel") {
+                label.setText(FormatterFactory.fmtCurrencyNoSymbol(lTauxEff == null ? 0F :
+                        lTauxEff.floatValue()));
+            }
+            else if (label.getName() == "pctLabel") {
+                label.setText(FormatterFactory.fmtCurrencyNoSymbol(lPctSalary.floatValue()));
+            }
+            else if (label.getName() == "ytaLabel") {
+                label.setText(FormatterFactory.fmtCurrencyNoSymbol(lPerYear.floatValue()));
+            }
+        }
+    }
+
 }
