@@ -82,12 +82,12 @@ public class EntryPanel extends JPanel {
         timCB.addActionListener(lAL);
         //Add text field focus listener
         FocusListener lFocusListener = new FocusListener() {
-            @Override
+
             public void focusGained(FocusEvent pEvent) {
                 curValue = ((FloatJTextField) pEvent.getSource()).getValue();
             }
 
-            @Override
+
             public void focusLost(FocusEvent pEvent) {
                 Float lNewValue = ((FloatJTextField) pEvent.getSource()).getValue();
                 if ((curValue == null && lNewValue != null) || (curValue != null && !curValue.equals(lNewValue))) {

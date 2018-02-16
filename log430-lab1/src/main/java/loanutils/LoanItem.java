@@ -4,9 +4,7 @@
 package loanutils;
 
 import com.google.common.eventbus.EventBus;
-import controllers.EntryPanelUpdate;
-import controllers.OptionPanelUpdate;
-import controllers.TabbedPanelUpdate;
+import controllers.PanelUpdate;
 
 import java.io.Serializable;
 
@@ -117,9 +115,9 @@ public final class LoanItem implements Cloneable, Serializable {
      * Aware the subscribers that this item is updated
      */
     public void updateChanges() {
-        evtBus.post(new EntryPanelUpdate(this));
-        evtBus.post(new OptionPanelUpdate(this));
-        evtBus.post(new TabbedPanelUpdate(this));
+        evtBus.post(new PanelUpdate(this));
+//        evtBus.post(new OptionPanelUpdate(this));
+//        evtBus.post(new TabbedPanelUpdate(this));
     }
 
 //getters and setters

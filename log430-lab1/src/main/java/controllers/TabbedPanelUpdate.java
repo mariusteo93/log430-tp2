@@ -2,24 +2,19 @@ package controllers;
 
 import loanutils.CalcLoanItem;
 import loanutils.FormatterFactory;
-import loanutils.LoanItem;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.EventObject;
 import java.util.List;
 import java.util.ListIterator;
 
-public class TabbedPanelUpdate extends EventObject implements InterfacePanelUpdater {
+public class TabbedPanelUpdate extends PanelUpdate {
 
     private List<JLabel> labelList = new ArrayList<JLabel>();
-    private Object item;
 
     public TabbedPanelUpdate(Object source){
         super(source);
-
-        item = super.getSource();
     }
 
 
@@ -38,23 +33,23 @@ public class TabbedPanelUpdate extends EventObject implements InterfacePanelUpda
     }
 
     private void setLabels(){
-        Double lMensHorsAss = CalcLoanItem.computeMensHorsAss((LoanItem) item);
+        Double lMensHorsAss = CalcLoanItem.computeMensHorsAss( super.getItem() );
         if (lMensHorsAss == null) {
             lMensHorsAss = 0D;
         }
-        Double lMensAss = CalcLoanItem.computeMensAss((LoanItem) item);
+        Double lMensAss = CalcLoanItem.computeMensAss( super.getItem() );
         if (lMensAss == null) {
             lMensAss = 0D;
         }
         Double lMens = lMensHorsAss + lMensAss;
-        Double lCoutHorsAss = lMensHorsAss * ((LoanItem) item).getDuree()
-                * 12D - ((LoanItem) item).getAmount();
-        Double lCoutAss = lMensAss * ((LoanItem) item).getDuree() * 12D;
-        Double lCout = lCoutHorsAss + lCoutAss + (((LoanItem) item).getFrais() == null?
-                0D : ((LoanItem) item).getFrais());
-        Double lTauxEff = CalcLoanItem.calcTauxEff((LoanItem) item);
-        Double lPctSalary = ((LoanItem) item).getSalary().equals(0F) ? 0F :
-                lMens / ((LoanItem) item).getSalary() * 100D;
+        Double lCoutHorsAss = lMensHorsAss * super.getItem().getDuree()
+                * 12D - super.getItem().getAmount();
+        Double lCoutAss = lMensAss * super.getItem().getDuree() * 12D;
+        Double lCout = lCoutHorsAss + lCoutAss + (super.getItem().getFrais() == null?
+                0D : super.getItem().getFrais());
+        Double lTauxEff = CalcLoanItem.calcTauxEff( super.getItem() );
+        Double lPctSalary = super.getItem().getSalary().equals(0F) ? 0F :
+                lMens / super.getItem().getSalary() * 100D;
         Double lPerYear = lMens * 12D;
 
 
